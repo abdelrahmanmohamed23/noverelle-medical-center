@@ -1,43 +1,44 @@
 "use client";
-// TODO:
-// - bug : Fix active path matching for nested/sub-pages
-import { Menu } from "lucide-react";
+import BookAppointmentButton from "../buttons/BookAppointmentButton";
 import Link from "next/link";
 import Button from "../buttons/Button";
 import { twMerge } from "tailwind-merge";
-import { useState } from "react";
+
 import SideNav from "./SideNav";
 import Logo from "../Logo";
-import { usePathname } from "next/navigation";
+
 import { NAV_LINKS } from "@/constants/navigation";
+import useActiveRoute from "@/hooks/useActiveRoute";
 export default function Header() {
-  const path = usePathname();
+  const getActiveRoute = useActiveRoute();
 
   return (
-    <header className="fixed  z-50 flex w-full items-center justify-between bg-white px-6 py-4 shadow-sm sm:px-10">
+    <header className="fixed z-50 flex w-full items-center justify-between bg-white px-6 py-4 shadow-sm sm:px-10">
       <Logo />
       <nav className="hidden lg:block" aria-label="Main Navigation">
         <ul className="flex gap-8">
-          {NAV_LINKS.map(({ text, href }) => (
-            <li key={href}>
-              <Link
-                className={twMerge(
-                  "font-medium",
-                  href === path &&
-                    "text-accent underline decoration-2 underline-offset-10",
-                )}
-                href={href}
-              >
-                {text}
-              </Link>
-            </li>
-          ))}
+          {NAV_LINKS.map(({ text, href }) => {
+            const isActive = getActiveRoute(href);
+            return (
+              <li key={href}>
+                <Link
+                  aria-current={isActive ? "page" : undefined}
+                  className={twMerge(
+                    "font-medium",
+                    isActive &&
+                      "text-accent underline decoration-2 underline-offset-10",
+                  )}
+                  href={href}
+                >
+                  {text}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
-      <Button href="/" className="hidden lg:flex">
-        Book Appointment
-      </Button>
 
+      <BookAppointmentButton className="hidden lg:flex" />
       <SideNav />
     </header>
   );
