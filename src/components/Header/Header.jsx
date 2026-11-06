@@ -1,7 +1,7 @@
 "use client";
 import BookAppointmentButton from "../buttons/BookAppointmentButton";
 import Link from "next/link";
-import Button from "../buttons/Button";
+
 import { twMerge } from "tailwind-merge";
 
 import SideNav from "./SideNav";
