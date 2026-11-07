@@ -5,7 +5,7 @@ import BookAppointmentButton from "../buttons/BookAppointmentButton";
 import Copyright from "../Copyright";
 import Logo from "../Logo";
 
-import { NAV_LINKS } from "@/constants/navigation";
+import { MAIN_LINKS } from "@/constants/mainLinks";
 import { useState, useRef, useEffect } from "react";
 import useActiveRoute from "@/hooks/useActiveRoute";
 export default function SideNav() {
@@ -87,7 +87,7 @@ export default function SideNav() {
           </div>
           <nav aria-label="Side navigation">
             <ul className="flex flex-col">
-              {NAV_LINKS.map(({ text, href, Icon }) => {
+              {MAIN_LINKS.map(({ text, href, Icon }) => {
                 const isActive = getActiveRoute(href);
 
                 return (

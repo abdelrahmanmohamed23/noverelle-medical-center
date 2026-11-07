@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 import SideNav from "./SideNav";
 import Logo from "../Logo";
 
-import { NAV_LINKS } from "@/constants/navigation";
+import { MAIN_LINKS } from "@/constants/mainLinks";
 import useActiveRoute from "@/hooks/useActiveRoute";
 export default function Header() {
   const getActiveRoute = useActiveRoute();
@@ -17,7 +17,7 @@ export default function Header() {
       <Logo />
       <nav className="hidden lg:block" aria-label="Main Navigation">
         <ul className="flex gap-8">
-          {NAV_LINKS.map(({ text, href }) => {
+          {MAIN_LINKS.map(({ text, href }) => {
             const isActive = getActiveRoute(href);
             return (
               <li key={href}>

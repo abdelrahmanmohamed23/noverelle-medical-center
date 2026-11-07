@@ -7,7 +7,7 @@ import {
   Stethoscope,
   Mail,
 } from "lucide-react";
- export const NAV_LINKS = [
+ export const MAIN_LINKS = [
   { text: "Home", href: "/", Icon: Home },
   { text: "About", href: "/about", Icon: Info },
   { text: "Doctors", href: "/doctors", Icon: Users },
