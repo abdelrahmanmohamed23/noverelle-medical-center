@@ -5,12 +5,12 @@ export default function Button({ className, Icon, children, ...props }) {
     <Link
       {...props}
       className={twMerge(
-        "bg-accent flex gap-4 justify-center  py-4 px-6 rounded-lg",
+        "bg-accent flex justify-center gap-4 rounded-lg px-6 py-4 text-white",
         className,
       )}
     >
-      <p className="text-white"> {children}</p>
-      {Icon && <Icon />}
+      <span>{children}</span>
+      {Icon && <Icon aria-hidden />}
     </Link>
   );
 }

@@ -1,11 +1,22 @@
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
-export default function OutlineButton({className,  href, children, ...props }) {
-  const Component = href ? Link : "button";
+export default function OutlineButton({
+  className,
+  href,
+  children,
+  type = "button",
+  ...props
+}) {
+  const isLink = href !== undefined && href !== null;
+  const Component = isLink ? Link : "button";
   return (
     <Component
-      href={href}
-      className={twMerge("border border-accent rounded-lg py-2 px-4 text-accent flex gap-2", className)}
+      {...(isLink ? { href } : { type })}
+  
+      className={twMerge(
+        "border-accent text-accent flex gap-2 rounded-lg border px-4 py-2",
+        className,
+      )}
       {...props}
     >
       {children}
