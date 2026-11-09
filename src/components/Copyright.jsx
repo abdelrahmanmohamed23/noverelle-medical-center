@@ -1,5 +1,4 @@
-"use client";
-import { useLayoutEffect, useState } from "react";
+
 import { twMerge } from "tailwind-merge";
 
 export default function Copyright({ className }) {
