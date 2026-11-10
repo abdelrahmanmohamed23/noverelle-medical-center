@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BookingType {
+  DOCTOR
+  SERVICE
+}
+
+model Appointment {
+  id           String      @id @default(uuid())
+  patientEmail String
+  scheduledAt  DateTime
+  doctorId     String?
+  serviceId    String?
+  bookingType  BookingType
+
+  @@unique([patientEmail, doctorId, scheduledAt])
+  @@unique([patientEmail, serviceId, scheduledAt])
+}
