@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useId } from "react";
 
 export default function FeatureSection({
   subtitle,
@@ -7,23 +7,32 @@ export default function FeatureSection({
   button,
   items,
 }) {
+  const headingId = useId();
   return (
-    <section className="bg-secondery-background py-10 sm:px-10 px-6 flex flex-col gap-8">
-      <div className=" flex flex-col gap-2 items-center">
+    <section
+      aria-labelledby={headingId}
+      className="bg-secondery-background flex flex-col gap-8 px-6 py-10 sm:px-10"
+    >
+      <div className="flex flex-col items-center gap-2">
         <p className="text-deep-green font-bold">{subtitle}</p>
-        <h1 className="font-bold text-4xl  text-center">{title}</h1>
-        <p className="font-semibold text-gray-500 lg:max-w-1/2 sm:max-w-[75%] text-center">
+        <h2 id={headingId} className="text-center text-4xl font-bold">
+          {title}
+        </h2>
+        <p className="text-center font-semibold text-gray-500 sm:max-w-[75%] lg:max-w-1/2">
           {description}
         </p>
       </div>
       {button && button}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6  ">
-        {items.map(({ title, description, Icon }) => (
-          <div className="bg-background py-4 px-4 rounded-lg flex flex-col gap-1 items-start">
-            <div className="p-2 bg-secondery-background rounded-full">
-              <Icon className="text-accent" />
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map(({ title, description, Icon }, index) => (
+          <div
+            className="bg-background flex flex-col items-start gap-1 rounded-lg px-4 py-4"
+            key={index}
+          >
+            <div className="bg-secondery-background rounded-full p-2">
+              <Icon className="text-accent" aria-hidden />
             </div>
-            <h1 className="font-bold ">{title}</h1>
+            <h3 className="font-bold">{title}</h3>
             <p className="text-gray-500">{description}</p>
           </div>
         ))}
