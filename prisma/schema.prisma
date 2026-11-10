@@ -19,7 +19,7 @@ model Appointment {
   doctorId     String?
   serviceId    String?
   bookingType  BookingType
-  doctor       Doctor      @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctor       Doctor?      @relation(fields: [doctorId], references: [id], onDelete: Cascade)
 
   @@unique([doctorId, scheduledAt])
   @@unique([serviceId, scheduledAt])
