@@ -20,6 +20,6 @@ model Appointment {
   serviceId    String?
   bookingType  BookingType
 
-  @@unique([patientEmail, doctorId, scheduledAt])
-  @@unique([patientEmail, serviceId, scheduledAt])
+  @@unique([doctorId, scheduledAt])
+  @@unique([serviceId, scheduledAt])
 }
