@@ -12,18 +12,25 @@ enum BookingType {
   SERVICE
 }
 
+enum AppointmentStatus {
+  PENDING_VERIFICATION
+  CONFIRMED
+}
+
 model Appointment {
-  id           String      @id @default(uuid())
+  id           String            @id @default(uuid())
   patientEmail String
   scheduledAt  DateTime
+  status       AppointmentStatus @default(PENDING_VERIFICATION)
   doctorId     String?
   serviceId    String?
   bookingType  BookingType
-  doctor       Doctor?      @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctor       Doctor?           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
 
   @@unique([doctorId, scheduledAt])
   @@unique([serviceId, scheduledAt])
 }
+
 enum DayOfWeek {
   MONDAY
   TUESDAY
@@ -47,7 +54,7 @@ model Doctor {
 }
 
 model DoctorAvailability {
-  id        String @id @default(uuid())
+  id        String    @id @default(uuid())
   doctorId  String
   dayOfWeek DayOfWeek
   startTime String
