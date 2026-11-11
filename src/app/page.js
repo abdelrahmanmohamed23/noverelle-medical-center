@@ -30,7 +30,7 @@ export default function Home() {
 }
 function Hero() {
   return (
-    <div className="relative mt-21 h-[80vh] w-full lg:mt-22">
+    <div className="relative h-[80vh] w-full">
       <Image
         priority={true}
         fill
