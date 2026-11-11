@@ -9,7 +9,7 @@ export default function DoctorsGrid({ doctors, className, Heading = "h2" }) {
         className,
       )}
     >
-      {doctors.map(({ name, department, imageUrl }, index) => (
+      {doctors.map(({ id, name, department, imageUrl }, index) => (
         <div className="flex flex-col gap-4" key={index}>
           <div className="relative h-40 w-full">
             <Image
@@ -24,7 +24,7 @@ export default function DoctorsGrid({ doctors, className, Heading = "h2" }) {
             <Heading className="text-lg font-bold">Dr. {name}</Heading>
             <p className="text-gray-500">{department}</p>
           </div>
-          <BookAppointmentButton />
+          <BookAppointmentButton href={`/doctors/${id}`} />
         </div>
       ))}
     </div>

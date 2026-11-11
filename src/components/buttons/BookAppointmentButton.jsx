@@ -1,7 +1,7 @@
 import Button from "./Button";
-export default function BookAppointmentButton({ ...props }) {
+export default function BookAppointmentButton({ href = "/", ...props }) {
   return (
-    <Button href="/" {...props}>
+    <Button href={href} {...props}>
       Book Appointment
     </Button>
   );
