@@ -28,7 +28,7 @@ export default function DoctorsSection() {
         </p>
       </div>
 
-     <DoctorsGrid doctors={HOME_DOCTORS}/>
+     <DoctorsGrid doctors={HOME_DOCTORS} Heading="h3"/>
       <OutlineButton
         href="/"
         className="self-center justify-self-center md:col-start-2 md:row-start-1"
