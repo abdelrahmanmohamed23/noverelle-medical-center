@@ -1,14 +1,25 @@
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import { DynamicIcon } from "lucide-react/dynamic";
+import AppointmentScheduler from "@/features/doctors/components/AppointmentScheduler";
 
 export default async function Doctor({ params }) {
   const { doctorId } = await params;
-  const { name, department, imageUrl } = await prisma.doctor.findUnique({
-    where: {
-      id: doctorId,
-    },
-  });
+  const { name, department, imageUrl, availabilities, appointments } =
+    await prisma.doctor.findUnique({
+      where: {
+        id: doctorId,
+      },
+      include: {
+        availabilities: true,
+        appointments: {
+          where: {
+            status: "CONFIRMED",
+          },
+        },
+      },
+    });
+
   return (
     <div className="px-6 sm:px-10">
       <div className="relative flex flex-col items-center gap-10 py-10 min-[900px]:flex-row">
@@ -31,10 +42,15 @@ export default async function Doctor({ params }) {
           <Image fill src="/Soft Blue Gradient Wave Abstract.png" />
         </div>
         <DynamicIcon
-          name={"heart"}
+          name={"activity"}
           className="text-accent absolute right-0 bottom-[15%] hidden h-[20vh] w-[20%] opacity-30 lg:block"
         />
       </div>
+      <AppointmentScheduler
+        doctorId={doctorId}
+        availabilities={availabilities}
+        appointments={appointments}
+      />
     </div>
   );
 }

@@ -56,7 +56,7 @@ model Doctor {
 model DoctorAvailability {
   id        String    @id @default(uuid())
   doctorId  String
-  dayOfWeek DayOfWeek
+  dayOfWeek Int @default(0)
   startTime String
   endTime   String
 
